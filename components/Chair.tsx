@@ -23,7 +23,7 @@ type GLTFResult = GLTF & {
 }
 
 const Chair = (props: JSX.IntrinsicElements['group'])=> {
-  const { nodes, materials } = useGLTF('/chair.gltf') as unknown as GLTFResult;
+  const { nodes, materials } = useGLTF('/models/chair.gltf') as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Chair.geometry} material={materials.Chair} />
