@@ -1,13 +1,11 @@
 "use client";
 
 import {
-  MeshReflectorMaterial,
   PresentationControls,
   Stage,
 } from "@react-three/drei";
-import Chair from "./Chair";
 import Shoe from "./Shoe";
-import { degToRad, radToDeg } from "three/src/math/MathUtils.js";
+import { degToRad} from "three/src/math/MathUtils.js";
 
 const Scene = () => {
   return (
