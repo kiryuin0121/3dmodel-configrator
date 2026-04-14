@@ -41,6 +41,7 @@ const Shoe = (props: JSX.IntrinsicElements['group']) => {
 
   return (
     <group {...props} dispose={null}>
+      {/* シューレース */}
       <mesh geometry={nodes.shoe.geometry}>
         <meshStandardMaterial
           {...materials.laces}
@@ -48,6 +49,7 @@ const Shoe = (props: JSX.IntrinsicElements['group']) => {
         />
       </mesh>
 
+      {/* アッパー */}
       <mesh geometry={nodes.shoe_1.geometry}>
         <meshStandardMaterial
           {...materials.mesh}
@@ -55,6 +57,7 @@ const Shoe = (props: JSX.IntrinsicElements['group']) => {
         />
       </mesh>
 
+      {/* シューホール(靴ひもを通すパーツ) */}
       <mesh geometry={nodes.shoe_2.geometry}>
         <meshStandardMaterial
           {...materials.caps}
@@ -62,6 +65,7 @@ const Shoe = (props: JSX.IntrinsicElements['group']) => {
         />
       </mesh>
 
+      {/* インナー */}
       <mesh geometry={nodes.shoe_3.geometry}>
         <meshStandardMaterial
           {...materials.inner}
@@ -69,6 +73,7 @@ const Shoe = (props: JSX.IntrinsicElements['group']) => {
         />
       </mesh>
 
+      {/* ミッドソール */}
       <mesh geometry={nodes.shoe_4.geometry}>
         <meshStandardMaterial
           {...materials.sole}
@@ -76,6 +81,7 @@ const Shoe = (props: JSX.IntrinsicElements['group']) => {
         />
       </mesh>
 
+      {/* ストライプ(ロゴマーク) */}
       <mesh geometry={nodes.shoe_5.geometry}>
         <meshStandardMaterial
           {...materials.stripes}
@@ -83,6 +89,7 @@ const Shoe = (props: JSX.IntrinsicElements['group']) => {
         />
       </mesh>
 
+      {/* シュータン */}
       <mesh geometry={nodes.shoe_6.geometry}>
         <meshStandardMaterial
           {...materials.band}
@@ -90,6 +97,7 @@ const Shoe = (props: JSX.IntrinsicElements['group']) => {
         />
       </mesh>
 
+      {/* バックタブ(かかとのパーツ) */}
       <mesh geometry={nodes.shoe_7.geometry}>
         <meshStandardMaterial
           {...materials.patch}

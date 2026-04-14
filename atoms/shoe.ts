@@ -2,7 +2,7 @@ import { atom } from "jotai";
 type ShoePartMaterial = {
   color: string;
 };
-type ShoePart =
+export type ShoePart =
   | "laces"
   | "mesh"
   | "caps"
