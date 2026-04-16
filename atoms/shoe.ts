@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-type ShoePartTexture = "none"|"leather";
+type ShoePartTexture = null|"leather";
 type ShoePartMaterial = {
   color: string;
   texture:ShoePartTexture;
@@ -15,14 +15,14 @@ export type ShoePart =
   | "patch";
 type ShoeConfig = Record<ShoePart,ShoePartMaterial>;
 export const shoeConfigAtom = atom<ShoeConfig>({
-  laces: { color: "white" ,texture:"none"},
-  mesh: { color: "white" ,texture:"none"},
-  caps: { color: "white" ,texture:"none"},
-  inner: { color: "white" ,texture:"none"},
-  sole: { color: "white" ,texture:"none"},
-  stripes: { color: "white" ,texture:"none"},
-  band: { color: "white" ,texture:"none"},
-  patch: { color: "white" ,texture:"none"},
+  laces: { color: "white" ,texture:null},
+  mesh: { color: "white" ,texture:null},
+  caps: { color: "white" ,texture:null},
+  inner: { color: "white" ,texture:null},
+  sole: { color: "white" ,texture:null},
+  stripes: { color: "white" ,texture:null},
+  band: { color: "white" ,texture:null},
+  patch: { color: "white" ,texture:null},
 });
 export const setShoePartColorAtom = atom(null,(get,set,update:{part:ShoePart,color:string}) => {
   const {part,color} = update;
