@@ -1,6 +1,6 @@
 "use client";
 
-import { setShoePartColorAtom, shoeConfigAtom, ShoePart } from "@/atoms/shoe";
+import { setShoePartColorAtom, setShoePartTextureAtom, shoeConfigAtom, ShoePart } from "@/atoms/shoe";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useState } from "react";
 
@@ -42,6 +42,10 @@ const UI = () => {
   const shoeConfig = useAtomValue(shoeConfigAtom);
   const setShoePartColor = useSetAtom(setShoePartColorAtom);
   const [slideNum, setSlideNum] = useState(0);
+
+  const setShoePartTexture = useSetAtom(setShoePartTextureAtom);
+  const currentPart = SHOE_PARTS[slideNum];
+  const isLeather = shoeConfig[currentPart].texture === "leather";
   return (
     <div
       className={`absolute inset-0 z-10 w-screen h-screen pointer-events-none`}
@@ -62,7 +66,7 @@ const UI = () => {
           </button>
           <div className={`flex gap-x-2`}>
 
-          <h2>{SHOE_PART_LABEL[SHOE_PARTS[slideNum]]}</h2>
+          <h2>{SHOE_PART_LABEL[currentPart]}</h2>
           <span className={`text-neutral-500`}>{slideNum+1}/{SHOE_PARTS.length}</span>
           </div>
           <button
@@ -74,7 +78,29 @@ const UI = () => {
             →
           </button>
         </div>
-
+        
+         <div className={`flex justify-center gap-x-2`}>
+          <button
+            onClick={() => setShoePartTexture({ part: currentPart, texture: null })}
+            className={`px-4 py-1.5 rounded-full text-sm border transition-colors cursor-pointer ${
+              !isLeather
+                ? "bg-neutral-800 text-white border-neutral-800"
+                : "bg-white text-neutral-600 border-neutral-300"
+            }`}
+          >
+            メッシュ
+          </button>
+          <button
+            onClick={() => setShoePartTexture({ part: currentPart, texture: "leather" })}
+            className={`px-4 py-1.5 rounded-full text-sm border transition-colors cursor-pointer ${
+              isLeather
+                ? "bg-neutral-800 text-white border-neutral-800"
+                : "bg-white text-neutral-600 border-neutral-300"
+            }`}
+          >
+            レザー
+          </button>
+        </div>
         <ul className={`flex gap-8 justify-center items-center`}>
           {
             COLORS.map((color)=>(
@@ -82,7 +108,7 @@ const UI = () => {
                 <button
                 onClick={() =>
                   setShoePartColor({
-                    part: SHOE_PARTS[slideNum],
+                    part: currentPart,
                     color:color.code,
                   })
                 }
