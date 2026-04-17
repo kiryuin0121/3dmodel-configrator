@@ -27,8 +27,11 @@ type GLTFResult = GLTF & {
     patch: THREE.MeshStandardMaterial
   }
 }
-
-const Shoe = (props: JSX.IntrinsicElements['group']) => {
+type Props = {
+  position?:[number,number,number],
+  rotation?:[number,number,number]
+}
+const Shoe = ({position=[0,0,0],rotation=[0,0,0]}:Props) => {
   const { nodes, materials } = useGLTF('/models/shoe.glb') as unknown as GLTFResult
   const shoeConfig = useAtomValue(shoeConfigAtom)
 
@@ -57,7 +60,7 @@ const Shoe = (props: JSX.IntrinsicElements['group']) => {
   }
 
   return (
-    <group {...props} dispose={null}>
+    <group dispose={null} position={position} rotation={rotation}>
       {/* シューレース */}
       <mesh geometry={nodes.shoe.geometry}>
         <meshStandardMaterial {...materials.laces} {...materialProps('laces')} />
