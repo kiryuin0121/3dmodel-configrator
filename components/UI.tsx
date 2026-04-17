@@ -1,19 +1,9 @@
 "use client";
 
 import { setShoePartColorAtom, setShoePartTextureAtom, shoeConfigAtom, ShoePart } from "@/atoms/shoe";
+import { nextSlideAtom, prevSlideAtom, SHOE_PARTS, slideNumAtom } from "@/atoms/slide";
 import { useAtomValue, useSetAtom } from "jotai";
-import { useState } from "react";
 
-const SHOE_PARTS: ShoePart[] = [
-  "mesh",
-  "stripes",
-  "laces",
-  "caps",
-  "inner",
-  "sole",
-  "band",
-  "patch",
-];
 const SHOE_PART_LABEL: Record<ShoePart, string> = {
   laces: "シューレース",
   mesh: "アッパー",
@@ -38,11 +28,13 @@ const COLORS = [
   { label: "パープル", code: "#a855f7" },
   { label: "ピンク", code: "#ec4899" },
 ];
+
 const UI = () => {
   const shoeConfig = useAtomValue(shoeConfigAtom);
   const setShoePartColor = useSetAtom(setShoePartColorAtom);
-  const [slideNum, setSlideNum] = useState(0);
-
+  const slideNum = useAtomValue(slideNumAtom);
+  const nextSlide = useSetAtom(nextSlideAtom);
+  const prevSlide = useSetAtom(prevSlideAtom);
   const setShoePartTexture = useSetAtom(setShoePartTextureAtom);
   const currentPart = SHOE_PARTS[slideNum];
   const isLeather = shoeConfig[currentPart].texture === "leather";
@@ -56,11 +48,7 @@ const UI = () => {
         <div className={`flex justify-center items-center gap-x-4 text-lg`}>
           <button
             className={`cursor-pointer`}
-            onClick={() =>
-              setSlideNum((slideNum) =>
-                slideNum === 0 ? SHOE_PARTS.length - 1 : slideNum - 1,
-              )
-            }
+            onClick={prevSlide}
           >
             ←
           </button>
@@ -71,9 +59,7 @@ const UI = () => {
           </div>
           <button
             className={`cursor-pointer`}
-            onClick={() =>
-              setSlideNum((slideNum) => (slideNum + 1) % SHOE_PARTS.length)
-            }
+            onClick={nextSlide}
           >
             →
           </button>
