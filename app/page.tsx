@@ -7,7 +7,7 @@ import { Canvas } from "@react-three/fiber";
 const App = () => {
   return (
     <main className={`w-screen h-screen relative`}>
-      <Canvas>
+      <Canvas camera={{position:[0,0,6.5],fov:30}}>
         <Scene/>
       </Canvas>
       <UI/>
