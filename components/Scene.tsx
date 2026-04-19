@@ -67,7 +67,7 @@ const Scene = () => {
 
   useControls("settings", {
     smoothTime: {
-      value: 0.35,
+      value: 0.4,
       min: 0.1,
       max: 2,
       step: 0.1,

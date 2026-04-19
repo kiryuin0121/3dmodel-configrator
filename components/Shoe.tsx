@@ -54,7 +54,7 @@ const Shoe = ({position=[0,0,0],rotation=[0,0,0]}:Props) => {
   const materialProps = (part: keyof typeof shoeConfig) => {
     const { color, texture } = shoeConfig[part]
     if (texture === 'leather') {
-      return { ...leather, color, roughness: 0.8, metalness: 0.0 }
+      return { ...leather, color, roughness: 1, metalness: 0.0 }
     }
     return { color }
   }
